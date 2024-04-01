@@ -16,14 +16,13 @@ async function fileToGenerativePart(file) {
 }
 
 async function sendPrompt() {
-	const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
+	const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
 	const prompt =
-		"Give me an accurate estimate of the nutritional facts in this picture";
+		"Give me an accurate estimate of the nutritional facts in this picture. Please format these nutritional facts as a json file. Elements inside of the json should include: calories, totaFat, satFat, transFat, cholesterol, sodium, totalCarbs, fiber, sugars, and protein. Do not include units. If you believe the ";
 
-	const imageInputElement = document.querySelector("input[type=image]");
 	const image = await Promise.all(
-		[...imageInputElement.files].map(fileToGenerativePart)
+		[...imageUploadElement.files].map(fileToGenerativePart)
 	);
 
 	const result = await model.generateContent([prompt, ...image]);
@@ -34,12 +33,29 @@ async function sendPrompt() {
 }
 
 async function getNutrition() {
-	const result = await sendPrompt();
+	let result = await sendPrompt();
+	result = result.split("json")[1];
+	result = result.split('`')[0];
 
-    getNutrition = JSON.
+	console.log(result);
 
-	document.querySelector("#calories.value").innerText = result.;
+	result = JSON.parse(result);
+
+	document.querySelector("#calories .value").innerHTML = result.calories;
+	document.querySelector("#totalFat .value").innerHTML = `${result.totalFat}g`;
+	document.querySelector("#saturatedFat .value").innerHTML = `${result.satFat}g`;
+	document.querySelector("#transFat .value").innerHTML = `${result.transFat}g`;
+	document.querySelector("#cholesterol .value").innerHTML = `${result.cholesterol}mg`;
+	document.querySelector("#sodium .value").innerHTML = `${result.sodium}mg`;
+	document.querySelector("#totalCarbohydrate .value").innerHTML = `${result.totalCarbs}g`;
+	document.querySelector("#dietaryFiber .value").innerHTML = `${result.fiber}g`;
+	document.querySelector("#sugars .value").innerHTML = `${result.sugars}g`;
+	document.querySelector("#protein .value").innerHTML = `${result.protein}g`;
+
+    // getNutrition = JSON.
+
+	// document.querySelector("#calories.value").innerText = result;
 }
 
 const imageUploadElement = document.querySelector("input[type=file]");
-imageUploadElement.addEventListener("onchange", getNutrition);
+imageUploadElement.addEventListener("change", getNutrition);
