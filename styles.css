@@ -1,0 +1,48 @@
+#nutritionFacts {
+	font-family: "Arial", sans-serif;
+	font-size: 16px;
+	color: #333;
+	background-color: #f9f9f9;
+	border: 5px solid #000;
+	padding: 20px;
+	width: 300px;
+	margin: 0 auto;
+}
+
+hr {
+	border: 1px solid #000;
+	margin-bottom: 20px;
+}
+
+.infoRow {
+	display: flex;
+	justify-content: space-between;
+}
+
+.infoRow:not(:last-of-type) {
+	border-bottom: 1px solid #000;
+}
+
+.name {
+	font-weight: bold;
+}
+
+.infoGroupHeader {
+	margin-top: 15px;
+}
+
+.infoGroupHeader .name {
+	font-size: 20px;
+}
+
+.infoGroupItem .name {
+	font-weight: normal;
+}
+
+.infoGroupItem {
+	margin-left: 15px;
+}
+
+.infoGroup {
+	margin-bottom: 15px;
+}
