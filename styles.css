@@ -64,6 +64,11 @@ hr {
 	margin-bottom: 20px;
 }
 
+#calories{
+	font-size: 35px;
+	font-weight: bold;
+}
+
 .infoRow {
 	display: flex;
 	justify-content: space-between;

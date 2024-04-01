@@ -44,7 +44,9 @@ async function getNutrition() {
 
 	if (!result.isFood) {
 		alert("This is not food.");
-		return;
+		
+		// history.go();
+		window.location.reload();
 	}
 
 	loadingElement.classList.remove("show");
