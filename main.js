@@ -15,7 +15,7 @@ async function fileToGenerativePart(file) {
 	};
 }
 
-async function getPrompt() {
+async function sendPrompt() {
 	const model = genAI.getGenerativeModel({ model: "gemini-1.0-pro" });
 
 	const prompt =
@@ -33,11 +33,13 @@ async function getPrompt() {
 	return text;
 }
 
-async function sendPrompt() {
-	const result = await getPrompt();
+async function getNutrition() {
+	const result = await sendPrompt();
+
+    getNutrition = JSON.
 
 	document.querySelector("#calories.value").innerText = result.;
 }
 
 const imageUploadElement = document.querySelector("input[type=file]");
-imageUploadElement.addEventListener("onchange", sendPrompt);
+imageUploadElement.addEventListener("onchange", getNutrition);
